@@ -1,0 +1,276 @@
+{
+  "namespace": "nstda.nbt.gwas.rice",
+  "name": "value",
+  "type": "record",
+  "__WORKFLOW_HOME_PATH_BY_ENVIRONMENT": {
+    "standard": "/path/to/home",
+    "tara": "/tarafs/biobank/data/share/pachyderm",
+    "colossus": "/colossus/home/krittin/share/pachyderm",
+    "nbt": "/nbt_data/share/pachyderm",
+    "gb": "/nbt_main/share/pachyderm"
+  },
+  "fields": [
+    {
+      "name": "hmp",
+      "type": ["string",
+        {
+          "name": "hmpTestSetEnumType",
+          "type": "enum",
+          "symbols": [
+            "test",
+            "Japonica",
+            "Indica"
+
+          ],
+          "default": "test"
+        }
+      ],
+      "doc": "HMP input file path",
+      "default": "test",
+      "__type": "path",
+      "__required": false,
+      "__private": true,
+      "__need_resolve": {
+        "hmp": "__DATASET_BY_KEY"
+      },
+      "__DATASET_BY_KEY": {
+        "test": "env://gwas-rice/data/conCleanJaporice.hmp.txt",
+        "Japonica": "env://gwas-rice/data/production/japorice305samtest.hmp.txt",
+        "Indica": "env://gwas-rice/data/production/indirice305samtest.hmp.txt"
+      }
+    },
+    {
+      "name": "hmpFile",
+      "doc" : "file hmp",
+      "type": "string",
+      "default": "testlist"
+    },
+    {
+      "name": "traitsFile",
+      "doc ": "file traits(phenotype)",
+      "type": "string",
+      "default": "testlist"
+    },
+    {
+      "name": "sharedhapmap",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "module",
+      "doc": "Which module to do GWAS Analysis.",
+      "type": {
+          "name": "moduleEnumType",
+          "type": "enum",
+          "symbols": [
+            "PopGen",
+            "SidecarML"
+          ],
+          "default": "PopGen"
+      },
+      "default": "PopGen",
+      "__required": true,
+      "__private": false
+    },
+    {
+      "name": "method",
+      "doc": "Method to do GWAS Analysis.",
+      "type": {
+          "name": "methodEnumType",
+          "type": "enum",
+          "symbols": [
+            "CMLM",
+            "MLM",
+            "GLM",
+            "MLMM",
+            "FarmCPU",
+            "FASTLMM"
+          ],
+          "default": "CMLM"
+      },
+      "default": "CMLM",
+      "__required": true,
+      "__private": false
+    },
+    {
+      "name": "traits",
+      "type": ["string",
+        {
+          "name": "traitsTestSetEnumType",
+          "type": "enum",
+          "symbols": [
+            "test"
+          ],
+          "default": "test"
+        }
+      ],
+      "doc": "HMP input file path",
+      "default": "test",
+      "__type": "path",
+      "__required": true,
+      "__private": false,
+      "__need_resolve": {
+        "traits": "__TEST_DATA_DIR_BY_PLATFORM"
+      },
+      "__TEST_DATA_DIR_BY_PLATFORM": {
+        "test": "env://gwas-rice/data/rice_traits_toy.txt"
+      }
+    },
+    {
+      "name": "mlInputCSV",
+      "type": ["string",
+        {
+          "name": "mlInputTestSetEnumType",
+          "type": "enum",
+          "symbols": [
+            "test"
+          ],
+          "default": "test"
+        }
+      ],
+      "doc": "ML input file path",
+      "default": "test",
+      "__type": "path",
+      "__required": true,
+      "__private": false,
+      "__need_resolve": {
+        "mlInputCSV": "__TEST_DATA_DIR_BY_PLATFORM"
+      },
+      "__TEST_DATA_DIR_BY_PLATFORM": {
+        "test": "env://gwas-rice/ML_data/PCAfinalpop2ndcleangetoutjapo305Bikex2rmsamraw3.csv"
+      }
+    },
+    {
+      "name": "homozygous",
+      "doc": "Filter Homozygous",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "maf",
+      "type": "float",
+      "doc": "Minor Allele Frequency for QC",
+      "default": 0.05
+    },
+    {
+      "name": "geno",
+      "type": "float",
+      "doc": "Genotypeing rate for QC",
+      "default": 0.02
+    },
+    {
+      "name": "paramsPath",
+      "type": ["null", "string"],
+      "doc": "Params Path",
+      "default": null,
+      "__type": "path",
+      "__required": false,
+      "__private": true
+    },
+    {
+      "name": "output",
+      "type": "string",
+      "doc": "Output Dir Path",
+      "default": "launchDir://",
+      "__type": "dir",
+      "__required": false,
+      "__private": true
+    },
+    {
+      "name": "enableS3",
+      "type": "boolean",
+      "doc": "enable publish data to S3",
+      "default": false,
+      "__required": false,
+      "__private": true
+    },
+    {
+      "name": "s3output",
+      "type": ["null", "string"],
+      "doc": "S3 Output Dir Path",
+      "default": null,
+      "__type": "dir",
+      "__required": false,
+      "__private": true
+    },
+    {
+      "name": "vcfgzFile",
+      "doc" : "file vcf.gz",
+      "type": "string",
+      "default": "testlist"
+    },
+    {
+      "name": "bedbimfamFile",
+      "doc" : "file bedbimfam",
+      "type": "string",
+      "default": "testlist"
+    },
+    {
+      "name": "PopGenTools",
+      "doc": "PopGenTools to Analysis.",
+      "type": {
+          "name": "PopGenToolsEnumType",
+          "type": "enum",
+          "symbols": [
+            "phylo",
+            "admixture",
+            "ipcaps",
+            "admixture_and_faststructure"
+          ],
+          "default": "admixture"
+      },
+      "default": "admixture",
+      "__required": true,
+      "__private": false
+    },
+    {
+      "name": "analyze",
+      "doc": "Topic analyze to Analysis.",
+      "type": {
+          "name": "analyzeEnumType",
+          "type": "enum",
+          "symbols": [
+            "GWAS",
+            "PopGen",
+            "BOTH"
+          ],
+          "default": "GWAS"
+      },
+      "default": "GWAS",
+      "__required": true,
+      "__private": false
+    },
+    {
+      "name": "QCTools",
+      "doc": "tools to Quality Control.",
+      "type": {
+          "name": "QCToolsEnumType",
+          "type": "enum",
+          "symbols": [
+            "PLINK",
+            "BCFTools"
+          ],
+          "default": "PLINK"
+      },
+      "default": "PLINK",
+      "__required": true,
+      "__private": false
+    },
+    {
+      "name": "PruneLDTools",
+      "doc": "tools to Quality Control.",
+      "type": {
+          "name": "PruneLDToolsEnumType",
+          "type": "enum",
+          "symbols": [
+            "PLINK",
+            "BCFTools"
+          ],
+          "default": "PLINK"
+      },
+      "default": "PLINK",
+      "__required": true,
+      "__private": false
+    }
+  ]
+}
