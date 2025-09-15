@@ -1,0 +1,82 @@
+{
+  "namespace": "nstda.nbt.gwas.rice",
+  "name": "key",
+  "type": "record",
+  "__PROGRESS_BY_SUBWORKFLOW_AND_PROCESS": {
+    "__CHECKPOINTS": ["__CheckLastOutput"],
+    "Preprocess": {
+      "TrimHmpAndTraits": { "process_started": 0.0, "process_completed": 10.0 },
+      "ConvertHapMapToPlink": { "process_started": 10.0, "process_completed": 20.0 },
+      "QualityControlBySampleAndBySNPs": { "process_started": 20.0, "process_completed": 40.0 },
+      "PruneLD": { "process_started": 40.0, "process_completed": 60.0 },
+      "ConvertBedBimFamToMapPed": { "process_started": 60.0, "process_completed": 80.0 },
+      "ConvertMapPedToHapMap": { "process_started": 80.0, "process_completed": 100.0 }
+    },
+    "PopulationGenetics": {
+      "IPCAPs": { "process_started": 0, "process_completed": 20.0 },
+      "Admixture": { "process_started": 0.0, "process_completed": 30.0 },
+      "AdmixtureIter1": { "process_started": 30.0, "process_completed": 30.0 },
+      "AdmixtureIter2": { "process_started": 30.0, "process_completed": 30.0 },
+      "AdmixtureIter3": { "process_started": 30.0, "process_completed": 30.0 },
+      "SummarizeAdmixture": { "process_started": 30.0, "process_completed": 40.0 },
+      "StructureByFastStructure": { "process_started": 30.0, "process_completed": 60.0 },
+      "Phylogenetic": { "process_started": 0.0, "process_completed": 40.0 }
+    },
+    "GWAS": {
+      "ConvertMapPedToHapMap": { "process_started": 0, "process_completed": 30.0 },
+      "GWASAnalysis": { "process_started": 30.0, "process_completed": 100.0 }
+    },
+    "SidecarML": {
+      "WEKAConvertFromCSV": { "process_started": 0, "process_completed": 10.0 },
+      "WekaFilterNumericAttributesToNominal": { "process_started": 10.0, "process_completed": 20.0 },
+      "WekaInfoGainAttributeEval": { "process_started": 20.0, "process_completed": 30.0 },
+      "PickTopSNP": { "process_started": 70.0, "process_completed": 100.0 } 
+    }
+  },
+  "fields": [
+    {
+      "name": "runId",
+      "type": ["null", "string"],
+      "doc": "Run Id",
+      "default": null
+    },
+    {
+      "name": "priority",
+      "type": {
+        "type": "enum",
+        "name": "priorityEnumType",
+        "symbols": ["HIGH", "LOW"],
+        "default": "LOW"
+      },
+      "doc": "which Priority Queue to run",
+      "default": "LOW"
+    },
+    {
+      "name": "projectId",
+      "type": "string",
+      "doc": "Project Id"
+    },
+    {
+      "name": "userId",
+      "type": "string",
+      "doc": "User Id"
+    },
+    {
+      "name": "datasetId",
+      "type": ["null", "string"],
+      "doc": "Dataset Id if not specified they will be $userId_$projectId",
+      "default": null
+    },
+    {
+      "name": "workflowVersion",
+      "type": ["null", "string"],
+      "doc": "Workflow Version hash value",
+      "default": null
+    },
+    {
+      "name": "sampleIds",
+      "type": { "type": "array", "items": "string" },
+      "doc": "Specifies sampleIds... for this dataset id"
+    }
+  ]
+}
