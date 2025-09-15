@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+tail -n +2 $1 | awk -F"," '
+NR == 1 {pcs=$1; maxBIC=$2}
+NR > 1 && $2 > maxBIC { pcs=$1; maxBIC=$2 }
+END { if (pcs == 0) print 0; else print pcs; }
+'

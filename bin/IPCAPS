@@ -1,0 +1,15 @@
+#!/usr/bin/env Rscript  
+Sys.setenv(DISPLAY=":0.0")
+library(zeallot)
+library(IPCAPS)
+
+c(bed, sampleLabelTxt) %<-% commandArgs(TRUE)
+my.cluster1 <- ipcaps(bed=bed,
+    label.file=sampleLabelTxt,
+    threshold=0.18,
+    lab.col=2,
+    out=getwd(),
+    plot.as.pdf=TRUE)
+table(my.cluster1$cluster$label,my.cluster1$cluster$group)
+# https://github.com/kridsadakorn/ipcaps.bioc
+# table(my.cluster1$cluster$label, my.cluster1$cluster$group)

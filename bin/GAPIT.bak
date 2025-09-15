@@ -1,0 +1,90 @@
+##For BIC model selection
+library(multtest)
+library(gplots)
+library(LDheatmap)
+library(genetics)
+library(ape)
+library(EMMREML)
+library(compiler)
+library("scatterplot3d")
+
+source("gapit_functions.txt")
+source("emma.txt")
+
+myY <-read.table("rice_traits.txt", head = TRUE)
+myG <-read.delim("gwasforgapit88samafterqc.hmp.txt", head = FALSE)
+
+#Step 2: Run GAPIT
+myGAPIT <- GAPIT(
+Y=myY,
+G=myG,
+PCA.total=10,
+Model.selection = TRUE
+)
+
+
+
+
+
+
+
+
+
+
+## For FASTLMM 
+library(multtest)
+library(gplots)
+library(LDheatmap)
+library(genetics)
+library(ape)
+library(EMMREML)
+library(compiler)
+library("scatterplot3d")
+
+source("gapit_functions.txt")
+
+#Step 1: Set data directory and import files
+myCV <-read.csv("GAPIT.PCA_data1NY2_2.csv", head=TRUE, sep=",")
+myY  <-read.table("rice_traits.txt", head = TRUE)
+myG <-read.delim("gwasforgapit88samafterqc.hmp.txt", head = FALSE)
+
+#Step 2: Run GAPIT
+myGAPIT_SUPER <-GAPIT(
+Y=myY[,c(1,2)],
+G=myG,
+CV=myCV,
+sangwich.top="SUPER", #options are GLM,MLM,CMLM, FaST and SUPER 
+sangwich.bottom="SUPER", #options are GLM,MLM,CMLM, FaST and SUPER
+LD=0.1,
+)
+
+
+
+
+
+
+
+
+
+
+
+##For cMLM basic
+library(multtest)
+library(gplots)
+library(LDheatmap)
+library(genetics)
+library(ape)
+library(EMMREML)
+library(compiler)
+library("scatterplot3d")
+
+source("gapit_functions.txt")
+myY <-read.table("rice_traits.txt", head = TRUE)
+myG <-read.delim("gwasforgapit88samafterqc.hmp.txt", head = FALSE)
+
+#Step 2: Run GAPIT
+myGAPIT <- GAPIT(
+Y=myY,
+G=myG,
+PCA.total=3
+)

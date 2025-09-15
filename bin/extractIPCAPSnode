@@ -1,0 +1,19 @@
+#!/usr/bin/env Rscript  
+library(zeallot)
+library(dplyr)
+
+c(ref, node, outputDir='.') %<-% commandArgs(TRUE)
+
+refdata = read.table(file = ref, header = F )
+head(refdata[1:2])
+refindex<-c(1:length(refdata$V1))
+refdata1 <- cbind(refindex,refdata)
+head(refdata1[1:2])
+
+load(node)
+nodeName = sub(pattern = "\\.RData$", replacement = "", basename(node))
+result1=data.frame(index=index, label=label)
+result2 <- merge(refdata1, result1, by.x = c("refindex"), by.y = c("index"), all.x=FALSE, all.y=TRUE)
+result2selected <- result2 %>% select(refindex,V1,label)
+names(result2selected) <- c("index","sampleID","Groups")
+write.table(result2selected, file=paste(outputDir, "/", nodeName, ".txt", sep=""), sep="\t", row.names=FALSE, col.names = TRUE)
