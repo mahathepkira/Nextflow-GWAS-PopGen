@@ -1,0 +1,14 @@
+PLINK v1.90b7 64-bit (16 Jan 2023)
+Options in effect:
+  --hapmap inputonebase.hmp.txt
+  --out inputonebase.vcf
+  --recode vcf
+
+Hostname: gb-frontend-02.nbthpc.local
+Working directory: /nbt_main/home/lattapol/nextflow-gwas-popgen/data
+Start time: Thu Sep 11 11:08:56 2025
+
+Error: Unrecognized flag ('--hapmap').
+For more information, try "plink --help <flag name>" or "plink --help | more".
+
+End time: Thu Sep 11 11:08:56 2025

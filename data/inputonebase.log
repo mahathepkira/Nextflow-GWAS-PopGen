@@ -1,0 +1,26 @@
+PLINK v1.90b7 64-bit (16 Jan 2023)
+Options in effect:
+  --make-bed
+  --out inputonebase
+  --vcf inputonebase.vcf.gz
+
+Hostname: gb-frontend-02.nbthpc.local
+Working directory: /nbt_main/home/lattapol/nextflow-gwas-popgen/data
+Start time: Thu Sep 11 11:13:09 2025
+
+Random number seed: 1757563989
+192549 MB RAM detected; reserving 96274 MB for main workspace.
+--vcf: inputonebase-temporary.bed + inputonebase-temporary.bim +
+inputonebase-temporary.fam written.
+3093 variants loaded from .bim file.
+281 people (0 males, 0 females, 281 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to inputonebase.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 281 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.963828.
+3093 variants and 281 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to inputonebase.bed + inputonebase.bim + inputonebase.fam ... done.
+
+End time: Thu Sep 11 11:13:09 2025
