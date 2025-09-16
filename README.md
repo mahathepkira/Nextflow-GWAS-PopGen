@@ -19,3 +19,13 @@ nextflow run -profile gb main.nf --vcfgzFile data/inputonebase.vcf.gz --traitsFi
      --PopGenTools phylo,faststructure,ipcaps \
      --output result
 ```
+### BOTH
+```bash
+nextflow run -profile gb main.nf --vcfgzFile data/inputonebase.vcf.gz --traitsFile /nbt_main/share/pachyderm/gwasrice/datauserupload/sampleinonebase/inputtrat2.txt \
+     --QCTools BCFTools \
+     --method MLM \
+     --PruneLDTools PLINK \
+     --analyze BOTH \
+     --PopGenTools phylo,admixture,ipcaps \
+     --output result
+```
