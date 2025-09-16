@@ -1,6 +1,11 @@
 # Nextflow-GWAS-PopGen
-nextflow run -profile gb main.nf --vcfgzFile data/cucumber_core_SNP.vcf.gz --traitsFile data/cucumber_core_pheno_mock.txt \
-    --method MLM \
-    --analyze GWAS \
-    --QCTools BCFTools \
-    --output resultVCFcucumber2\
+
+## For vcf file
+### GWAS
+```bash
+nextflow run -profile gb main.nf --vcfgzFile data/inputonebase.vcf.gz --traitsFile /nbt_main/share/pachyderm/gwasrice/datauserupload/sampleinonebase/inputtrat2.txt \
+     --QCTools BCFTools \
+     --method MLM \
+     --analyze GWAS \
+     --output result
+```
